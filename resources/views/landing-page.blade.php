@@ -48,24 +48,20 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="#" class="logo"><img style="width: 48px; height: auto;" src="{{ asset('logo.png') }}"></a>
+                        <a href="" class="logo"><img style="width: 48px; height: auto;" src="{{ asset('logo.png') }}"></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#welcome" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#about">About</a></li>
-                            <li class="scroll-to-section"><a href="#services">Services</a></li>
-                            <li class="scroll-to-section"><a href="#frequently-question">Frequently Questions</a></li>
-                            <li class="submenu">
-                                <a href="javascript:;">Drop Down</a>
+                            <li class="scroll-to-section"><a href="#welcome" class="active">Beranda</a></li>
+                            <li class="scroll-to-section"><a href="#about">Tentang</a></li>
+                            <li class="scroll-to-section"><a href="#frequently-question">Kegiatan</a></li>
+                            <li class="scroll-to-section"><a href="{{ route('login') }}">Masuk</a></li>
+                            <!-- <li class="submenu">
+                                <a href="javascript:;">Login</a>
                                 <ul>
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="">Features</a></li>
-                                    <li><a href="">FAQ's</a></li>
-                                    <li><a href="">Blog</a></li>
+                                    <li><a href="">Login</a></li>
                                 </ul>
-                            </li>
-                            <li class="scroll-to-section"><a href="#contact-us">Contact Us</a></li>
+                            </li> -->
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -368,6 +364,7 @@
                                                 Unduh Panduan Matching Fund Tahun 2022 (di sini)
                                             </p>
                                             <p class="justify"><strong>Informasi selengkapnya dapat diakses pada laman: <a href="https://kedaireka.id/" target="_blank">https://kedaireka.id/</a> </strong></p>
+                                            <br>
                                         </li>
                                         <li>
                                             <h5>Program Bantuan Pembelajaran Daring Kolaboratif Tahun 2022</h5>
@@ -472,6 +469,7 @@
                                                 Unduh Pedoman Umum Program Kreativitas Mahasiswa Tahun 2022 (di sini)
                                             </p>
                                             <p class="justify"><strong>Informasi selengkapnya dapat diakses pada laman: <a href="https://simbelmawa.kemdikbud.go.id/" target="_blank">https://simbelmawa.kemdikbud.go.id/</a> </strong></p>
+                                            <br>
                                         </li>
                                         <li>
                                             <h5>Program Peningkatan Kapasitas Organisasi Kemahasiswaan (PPK Ormawa) Tahun 2022</h5>
@@ -486,6 +484,7 @@
                                                 Unduh Pedoman Program Penguatan Kapasitas Organisasi Kemahasiswaan (PPK ORMAWA) 2022 (di sini)
                                             </p>
                                             <p class="justify"><strong>Informasi selengkapnya dapat diakses pada laman: <a href="https://php2d.kemdikbud.go.id/" target="_blank">https://php2d.kemdikbud.go.id/</a> </strong></p>
+                                            <br>
                                         </li>
                                         <li>
                                             <h5>Pemilihan Mahasiswa Berprestasi Tahun 2022 (PILMAPRES)</h5>
@@ -530,6 +529,7 @@
                                                 Unduh Katalog Daftar Perguruan Tinggi Program Pertukaran Mahasiswa Merdeka Tahun 2022 (di sini)
                                             </p>
                                             <p class="justify"><strong>Informasi selengkapnya dapat diakses pada laman: <a href="https://program-pmm.id/" target="_blank">https://program-pmm.id/ </a> </strong></p>
+                                            <br>
                                         </li>
                                         <li>
                                             <h5>Kampus Mengajar Angkatan 4 Tahun 2022</h5>
@@ -537,6 +537,7 @@
 
                                             <p class="justify"><strong>Pendaftaran Program Kampus Mengajar Angkatan 4 Tahun 2022 dibuka pada 25 Mei – 12 Juni 2022. </strong></p>
                                             <p class="justify"><strong>Informasi selengkapnya dapat diakses pada laman: <a href="https://program-pmm.id/" target="_blank">https://program-pmm.id/ </a> </strong></p>
+                                            <br>
                                         </li>
                                         <li>
                                             <h5>Program Magang dan Studi Independen Bersertifikat (MSIB) Angkatan 3</h5>
@@ -573,6 +574,7 @@
                                                 Unduh surat pengumuman penyelenggaraan Entrepreneurship Award VI (di sini)
                                             </p>
                                             <p class="justify"><strong>Informasi selengkapnya dapat diakses pada laman: <a href="https://ea.unilak.ac.id" target="_blank">https://ea.unilak.ac.id</a> </strong></p>
+                                            <br>
                                         </li>
                                         <li>
                                             <h5>Pekan Seni Mahasiswa Tingkat Daerah (PEKSIMIDA) XV Tahun 2022</h5>
@@ -662,6 +664,35 @@
                                                     <td>Perorangan</td>
                                                 </tr>
                                             </table>
+
+                                            <p class="justify">
+                                                <strong>Pendaftaran PEKSIMIDA dibuka hingga 31 Agustus 2022</strong>
+                                            </p>
+                                            <p class="justify">
+                                                Unduh surat pengumuman pendaftaran PEKSIMIDA XV Aceh Tahun 2022 (di sini)
+                                            </p>
+                                            <p class="justify">
+                                                Unduh Panduan Pekan Seni Mahasiswa Daerah (PEKSIMIDA) XV Provinsi Aceh Tahun 2022 (di sini)
+                                            </p>
+                                            <p class="justify"><strong>Informasi selengkapnya dapat diakses pada laman: <a href="https://peksimidaaceh.com/" target="_blank">https://peksimidaaceh.com/</a> </strong></p>
+                                            <br>
+                                        </li>
+                                        <li>
+                                            <h5>Kompetisi Artikel KPPU 2022</h5>
+                                            <p class="justify">
+                                                Pada tahun 2022 ini, Komisi Pengawas Persaingan Usaha (KPPU) menyelenggarakan Kompetisi Artikel KPPU 2022. Kompetisi ini bertujuan untuk meningkatkan pemahaman pemangku kepentingan (stakeholders) tentang hukum persaingan usaha dan pengawasan kemitraan, serta sebagai wadah untuk menulis dan menganalisis isu-isu persaingan usaha dan Kemitraan UMKM yang dapat menjadi masukan dan pandangan baru bagi KPPU. Mengusung tema “Peningkatan Persaingan Sehat dan Pengawasan Kemitraan UMKM, Bangkit Lebih Kuat Menuju Indonesia Maju”, kompetisi ini dibuka untuk dua kategori, yaitu umum dan mahasiswa.
+                                            </p>
+
+                                            <p class="justify">
+                                                <strong>Pendaftaran Kompetisi Artikel KPPU 2022 dibuka hingga 6 November 2022</strong>
+                                            </p>
+                                            <p class="justify">
+                                                Unduh surat pengumuman Kompetisi Artikel KPPU 2022 (di sini)
+                                            </p>
+                                            <p class="justify">
+                                                Unduh Persyaratan dan Ketentuan Kompetisi Artikel KPPU 2022 (di sini)
+                                            </p>
+                                            <p class="justify"><strong>Informasi selengkapnya dapat diakses pada laman: <a href="https://kppu.go.id/kompetisiartikel" target="_blank">https://kppu.go.id/kompetisiartikel</a> </strong></p>
                                         </li>
                                     </ol>
                                 </div>
@@ -688,6 +719,29 @@
     <footer>
         <div class="container">
             <div class="row">
+                <div class="col-md-5">
+                    <h5>Hubungi Kami</h5>
+                    <p><strong>Lembaga Layanan Pendidikan Tinggi (LLDIKTI) Wilayah XIII</strong></p>
+                    <p>Jalan Soekarno Hatta, Komplek PGSD USK</p>
+                    <p>Lampeuneurut, Kecamatan Darul Imarah, Kab. Aceh Besar – 23352</p>
+                    <p>Telepon: (0651) 31130</p>
+                </div>
+
+                <div class="col-md-7">
+                    <h5>Tautan Terkait</h5>
+                    <ul class="social">
+                        <li>DIKTI</li>
+                        <li>SIMBELMAWA</li>
+                        <li>SIMLITABMAS</li>
+                        <li>BIMA</li>
+                        <li>MBKM</li>
+                        <li>PUSPRESNAS</li>
+                        <li>SPADA</li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12">
                     <p class="copyright">Copyright &copy; {{ date('Y') }} <strong>LDDIKTI Wilayah XIII</strong> 
                 
@@ -695,9 +749,9 @@
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">
                     <ul class="social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://www.facebook.com/humaslldikti13" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/HumasLLDIKTI13" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/humaslldikti13/" target="_blank"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
