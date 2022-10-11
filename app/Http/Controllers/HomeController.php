@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('cpanel.contents.dashboard', get_defined_vars());
     }
 }

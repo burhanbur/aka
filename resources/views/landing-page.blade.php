@@ -24,6 +24,54 @@
         .justify {
             text-align: justify;
         }
+
+        /* Timeline Container */
+        .timeline {
+          background: var(--primary-color);
+          margin: 20px auto;
+          padding: 20px;
+        }
+
+        /* Outer Layer with the timeline border */
+        .outer {
+          border-left: 2px solid #333;
+        }
+
+        /* Card container */
+        .card {
+          position: relative;
+          margin: 0 0 20px 20px;
+          padding: 10px;
+          color: gray;
+          border-radius: 8px;
+          max-width: 400px;
+        }
+
+        /* Information about the timeline */
+        .info {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        /* Title of the card */
+        .title {
+          color: orangered;
+          position: relative;
+        }
+
+        /* Timeline dot  */
+        .title::before {
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background: white;
+          border-radius: 999px;
+          left: -39px;
+          border: 3px solid orangered;
+        }
+
     </style>
 
     </head>
@@ -268,7 +316,7 @@
 
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12">
-                    <div class="accordions">
+                    <div class="accordions is-first-expanded">
                         <article class="accordion">
                             <div class="accordion-head">
                                 <span>Kegiatan Akademik - DIKTI</span>
@@ -704,10 +752,31 @@
                 <div class="left-text col-lg-4 col-md-4 col-sm-12">
                     <!-- <h5>Class aptent taciti sociosqu ad litora torquent per conubia</h5> -->
                     <div class="accordion-text">
-                        <p>Curabitur placerat diam in risus lobortis, laoreet porttitor est elementum. Nulla ultricies risus quis risus scelerisque, a aliquam tellus maximus. Cras pretium nulla ac convallis iaculis. Aenean bibendum erat vitae odio sodales, in facilisis tellus volutpat.</p>
-                        <p>Sed lobortis pellentesque magna ac congue. Suspendisse quis molestie magna, id eleifend ex. Ut mollis ultricies diam nec dictum. Morbi commodo hendrerit mi vel vulputate. Proin non tincidunt dui. Lorem ipsum dolor sit amet.</p>
-                        <!-- <span>Email: <a href="#">email@company.com</a><br></span> -->
-                        <!-- <a href="#contact-us" class="main-button">Contact Us</a> -->
+                        <div class="timeline">
+                          <div class="outer">
+                            <div class="card">
+                              <div class="info">
+                                <h5 class="title">Pemilihan Mahasiswa Berprestasi (PILMAPRES) Tahun 2022</h5>
+                                <p>Pendaftaran: 16 - 30 Juni 2022
+                                    <br>Klik di sini untuk mendaftar</p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="info">
+                                <h5 class="title">Matching Fund Angkatan 3 Tahun 2022</h5>
+                                <p>Pendaftaran: 14 Juli 2022
+                                    <br>Klik di sini untuk mendaftar</p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="info">
+                                <h5 class="title">PEKSIMIDA Aceh 2022</h5>
+                                <p>Pendaftaran: 23 - 31 Agustus 2022
+                                    <br>Klik di sini untuk mendaftar</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -719,7 +788,7 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <h5>Hubungi Kami</h5>
                     <p><strong>Lembaga Layanan Pendidikan Tinggi (LLDIKTI) Wilayah XIII</strong></p>
                     <p>Jalan Soekarno Hatta, Komplek PGSD USK</p>
@@ -727,7 +796,7 @@
                     <p>Telepon: (0651) 31130</p>
                 </div>
 
-                <div class="col-md-7">
+                <!-- <div class="col-md-7">
                     <h5>Tautan Terkait</h5>
                     <ul class="social">
                         <li>DIKTI</li>
@@ -738,7 +807,7 @@
                         <li>PUSPRESNAS</li>
                         <li>SPADA</li>
                     </ul>
-                </div>
+                </div> -->
             </div>
             <br>
             <div class="row">
