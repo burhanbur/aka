@@ -22,21 +22,21 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item @if (Request::is('cpanel/users*')) selected @endif"> 
+                        <!-- <li class="sidebar-item @if (Request::is('cpanel/users*')) selected @endif"> 
                             <a class="sidebar-link sidebar-link" href="{{ route('users') }}" aria-expanded="false">
                                 <i data-feather="slack" class="feather-icon"></i>
                                 <span class="hide-menu">Perguruan Tinggi</span>
                             </a>
-                        </li>
+                        </li> -->
 
-                        <li class="sidebar-item @if (Request::is('cpanel/users*')) selected @endif"> 
+                        <li class="sidebar-item @if (Request::is('cpanel/activities*')) selected @endif"> 
                             <a class="sidebar-link sidebar-link" href="{{ route('users') }}" aria-expanded="false">
                                 <i data-feather="briefcase" class="feather-icon"></i>
                                 <span class="hide-menu">Kegiatan</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item @if (Request::is('cpanel/survey*')) selected @endif"> 
+                        <li class="sidebar-item @if (Request::is('cpanel/surveys*')) selected @endif"> 
                             <a class="sidebar-link sidebar-link" href="{{ route('surveys') }}" aria-expanded="false">
                                 <i data-feather="folder" class="feather-icon"></i>
                                 <span class="hide-menu">Survey</span>

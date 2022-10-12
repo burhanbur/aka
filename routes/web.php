@@ -32,6 +32,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'cpanel'], function() {
 	Route::group(['middleware' => ['role:admin']], function() {
 		// users
 		Route::get('users', [UserController::class, 'index'])->name('users');
+		Route::get('users/{id?}', [UserController::class, 'show'])->name('show.user');
+		Route::get('create-user', [UserController::class, 'create'])->name('create.user');
+		Route::post('users', [UserController::class, 'store'])->name('store.user');
+		Route::get('edit-user/{id?}', [UserController::class, 'edit'])->name('edit.user');
+		Route::put('users/{id?}', [UserController::class, 'update'])->name('update.user');
 
 		// surveys
 		Route::get('surveys', [SurveyController::class, 'index'])->name('surveys');
