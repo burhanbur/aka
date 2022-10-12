@@ -55,7 +55,8 @@
 							<th class="center">Kegiatan</th>
 							<th class="center">Tanggal Selesai</th>
 							<th class="center">Status</th>
-							<th class="center"></th>
+							<th class="center">Total Pertanyaan</th>
+							<th style="width: 15%" class="center"></th>
 						</tr>
 					</thead>
 				</table>
@@ -87,12 +88,17 @@
 		                name: 'activity'
 		            },
 		            {
-		                data: 'due_date',
-		                name: 'due_date'
+		                data: 'due_date2',
+		                name: 'due_date2'
 		            },
 		            {
 		                data: 'status',
 		                name: 'status'
+		            },
+		            {
+		                data: 'question',
+		                name: 'question',
+		                class: 'center',
 		            },
 		            {
 		                data: 'action',

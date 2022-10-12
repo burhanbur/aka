@@ -36,7 +36,7 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item @if (Request::is('cpanel/surveys*')) selected @endif"> 
+                        <li class="sidebar-item @if (Request::is('cpanel/surveys*', 'cpanel/create-survey*', 'cpanel/edit-survey*')) selected @endif"> 
                             <a class="sidebar-link sidebar-link" href="{{ route('surveys') }}" aria-expanded="false">
                                 <i data-feather="folder" class="feather-icon"></i>
                                 <span class="hide-menu">Survey</span>

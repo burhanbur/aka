@@ -814,7 +814,8 @@
                 <div class="col-lg-7 col-md-12 col-sm-12">
                     <p class="copyright">Copyright &copy; {{ date('Y') }} <strong>LDDIKTI Wilayah XIII</strong> 
                 
-                . by <a rel="nofollow" href="https://burhanmafazi.netlify.app" target="_blank">Burhan Mafazi</a></p>
+                <!-- . by <a rel="nofollow" href="https://burhanmafazi.netlify.app" target="_blank">Burhan Mafazi</a></p> -->
+                . by <a rel="nofollow" href="#" target="_blank">Ressy Novita Sari</a></p>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">
                     <ul class="social">
