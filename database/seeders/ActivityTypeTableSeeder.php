@@ -28,7 +28,7 @@ class ActivityTypeTableSeeder extends Seeder
         ]);
 
         ActivityType::create([
-            'id' => 2, 
+            'id' => 3, 
             'name' => 'Program Mandiri', 
         ]);
     }
