@@ -16,6 +16,10 @@ class Responden extends Model
      */
     protected $table = 'respondens';
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'survey_id', 
+        'user_id', 
+    ];
 
     public function survey()
     {

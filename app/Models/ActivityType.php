@@ -16,6 +16,9 @@ class ActivityType extends Model
      */
     protected $table = 'activity_type';
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'name', 
+    ];
 
     public function activity()
     {

@@ -16,6 +16,12 @@ class Major extends Model
      */
     protected $table = 'majors';
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'institution_id', 
+        'code', 
+        'name', 
+        'is_active', 
+    ];
 
     public function institution()
     {

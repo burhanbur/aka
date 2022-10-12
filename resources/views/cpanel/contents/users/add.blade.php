@@ -20,37 +20,12 @@
 
 		<label>Perguruan Tinggi <strong style="color: red;">*</strong></label>
 		<div class="form-group">
-			<input type="text" class="form-control" name="institution_name" required>
-		</div>
-
-		<label>Kode PT <strong style="color: red;">*</strong></label>
-		<div class="form-group">
-			<input type="text" class="form-control" name="institution_code" required>
-		</div>
-
-		<label>No. Telepon PT</label>
-		<div class="form-group">
-			<input type="text" class="form-control" name="institution_telephone">
-		</div>
-
-		<label>Email PT</label>
-		<div class="form-group">
-			<input type="text" class="form-control" name="institution_email">
-		</div>
-
-		<label>Website PT</label>
-		<div class="form-group">
-			<input type="text" class="form-control" name="institution_website">
-		</div>
-
-		<label>Alamat PT</label>
-		<div class="form-group">
-			<input type="text" class="form-control" name="institution_address">
-		</div>
-
-		<label>Kode Pos PT</label>
-		<div class="form-group">
-			<input type="text" class="form-control" name="institution_postal_code">
+			<select class="form-control select2" id="institution_id" name="institution_id" required>
+				<option value="">Pilih Perguruan Tinggi</option>
+				@foreach($institutions as $value)
+					<option value="{{ $value->id }}">{{ $value->code }} - {{ $value->name }}</option>
+				@endforeach
+			</select>
 		</div>
 	</div>
 
@@ -61,4 +36,14 @@
 		</div>
 	</div>
 </form>
+
+<script>
+	$(document).ready(function() {
+        $('#institution_id').select2({
+	        placeholder: 'Pilih Perguruan Tinggi',
+	        width: '100%',
+            theme: 'bootstrap4',
+        });
+	});
+</script>
 @endsection

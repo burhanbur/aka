@@ -16,6 +16,13 @@ class Survey extends Model
      */
     protected $table = 'surveys';
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'activity_id', 
+        'title', 
+        'description', 
+        'is_active', 
+        'due_date', 
+    ];
 
     public function activity()
     {

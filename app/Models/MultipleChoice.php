@@ -16,6 +16,10 @@ class MultipleChoice extends Model
      */
     protected $table = 'multiple_choices';
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'question_id', 
+        'answer', 
+    ];
 
     public function question()
     {

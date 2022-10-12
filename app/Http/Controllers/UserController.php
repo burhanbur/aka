@@ -53,6 +53,8 @@ class UserController extends Controller
 
     public function create()
     {
+        $institutions = Institution::all();
+
         return view('cpanel.contents.users.add', get_defined_vars())->renderSections()['content'];
     }
 
@@ -64,8 +66,6 @@ class UserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6'],
-            'institution_code' => ['required', 'string', 'max:255'],
-            'institution_name' => ['required', 'string', 'max:255'],
         ]);
 
         if ($validator->fails()) {
@@ -82,19 +82,21 @@ class UserController extends Controller
                 'password' => Hash::make($data['password']),
             ]);
 
-            $institution = Institution::create([
-                'code' => $data['institution_code'],
-                'name' => $data['institution_name'],
-                'telephone' => $request->institution_telephone,
-                'email' => $request->institution_email,
-                'website' => $request->institution_website,
-                'address' => $request->institution_address,
-                'postal_code' => $request->institution_postal_code,
-            ]);
+            $user->assignRole('user');
+
+            // $institution = Institution::create([
+            //     'code' => $data['institution_code'],
+            //     'name' => $data['institution_name'],
+            //     'telephone' => $request->institution_telephone,
+            //     'email' => $request->institution_email,
+            //     'website' => $request->institution_website,
+            //     'address' => $request->institution_address,
+            //     'postal_code' => $request->institution_postal_code,
+            // ]);
 
             UserInstitution::create([
                 'user_id' => $user->id,
-                'institution_id' => $institution->id,
+                'institution_id' => $request->institution_id,
             ]);
 
             DB::commit();
@@ -111,6 +113,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $data = User::find($id);
+        $institutions = Institution::all();
 
         return view('cpanel.contents.users.edit', get_defined_vars())->renderSections()['content'];
     }
@@ -121,9 +124,9 @@ class UserController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
-            'institution_id' => ['required', 'string', 'max:255'],
-            'institution_code' => ['required', 'string', 'max:255'],
-            'institution_name' => ['required', 'string', 'max:255'],            
+            // 'institution_id' => ['required', 'string', 'max:255'],
+            // 'institution_code' => ['required', 'string', 'max:255'],
+            // 'institution_name' => ['required', 'string', 'max:255'],            
         ]);
 
         if ($validator->fails()) {
@@ -134,17 +137,26 @@ class UserController extends Controller
         DB::beginTransaction();
 
         try {
-            $institution = Institution::find($request->institution_id);
-
-            $institution->update([
-                'code' => $request->institution_code,
-                'name' => $request->institution_name,
-                'telephone' => $request->institution_telephone,
-                'email' => $request->institution_email,
-                'website' => $request->institution_website,
-                'address' => $request->institution_address,
-                'postal_code' => $request->institution_postal_code,
+            $user = User::find($id)->update([
+                'username' => $request->username,
+                'email' => $request->email,
             ]);
+
+            $userInst = UserInstitution::where('user_id', $id)->first();
+            $userInst->institution_id = $request->institution_id;
+            $userInst->save();
+
+            // $institution = Institution::find($request->institution_id);
+
+            // $institution->update([
+            //     'code' => $request->institution_code,
+            //     'name' => $request->institution_name,
+            //     'telephone' => $request->institution_telephone,
+            //     'email' => $request->institution_email,
+            //     'website' => $request->institution_website,
+            //     'address' => $request->institution_address,
+            //     'postal_code' => $request->institution_postal_code,
+            // ]);
 
             DB::commit();
             Alert::success('Success', 'User updated successfully');

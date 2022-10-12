@@ -16,6 +16,13 @@ class Question extends Model
      */
     protected $table = 'questions';
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'survey_id', 
+        'question', 
+        'image', 
+        'type', 
+        'is_required', 
+    ];
 
     public function survey()
     {

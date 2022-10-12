@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\SurveyController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserController;;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'cpanel'], function() {
 	Route::get('profile', [UserController::class, 'profile'])->name('profile');
 
 	Route::group(['middleware' => ['role:admin']], function() {
+		// institutions
+		Route::get('institutions', [InstitutionController::class, 'index'])->name('institutions');
+		Route::get('institutions/{id?}', [InstitutionController::class, 'show'])->name('show.institution');
+		Route::get('create-institution', [InstitutionController::class, 'create'])->name('create.institution');
+		Route::post('institutions', [InstitutionController::class, 'store'])->name('store.institution');
+		Route::get('edit-institution/{id?}', [InstitutionController::class, 'edit'])->name('edit.institution');
+		Route::put('institutions/{id?}', [InstitutionController::class, 'update'])->name('update.institution');
+
 		// users
 		Route::get('users', [UserController::class, 'index'])->name('users');
 		Route::get('users/{id?}', [UserController::class, 'show'])->name('show.user');
@@ -37,6 +46,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'cpanel'], function() {
 		Route::post('users', [UserController::class, 'store'])->name('store.user');
 		Route::get('edit-user/{id?}', [UserController::class, 'edit'])->name('edit.user');
 		Route::put('users/{id?}', [UserController::class, 'update'])->name('update.user');
+
+		// activities
+		Route::get('activities', [ActivityController::class, 'index'])->name('activities');
+		Route::get('activities/{id?}', [ActivityController::class, 'show'])->name('show.activity');
+		Route::get('create-activity', [ActivityController::class, 'create'])->name('create.activity');
+		Route::post('activities', [ActivityController::class, 'store'])->name('store.activity');
+		Route::get('edit-activity/{id?}', [ActivityController::class, 'edit'])->name('edit.activity');
+		Route::put('activities/{id?}', [ActivityController::class, 'update'])->name('update.activity');
 
 		// surveys
 		Route::get('surveys', [SurveyController::class, 'index'])->name('surveys');

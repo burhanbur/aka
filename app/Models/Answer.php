@@ -16,6 +16,10 @@ class Answer extends Model
      */
     protected $table = 'answers';
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'question_id', 
+        'answer', 
+    ];
 
     public function responden()
     {

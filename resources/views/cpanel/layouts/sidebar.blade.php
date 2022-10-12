@@ -15,6 +15,13 @@
                         <li class="list-divider"></li>
                         <!-- <li class="nav-small-cap"><span class="hide-menu">Master Data</span></li> -->
 
+                        <li class="sidebar-item @if (Request::is('cpanel/institutions*')) selected @endif"> 
+                            <a class="sidebar-link sidebar-link" href="{{ route('institutions') }}" aria-expanded="false">
+                                <i data-feather="slack" class="feather-icon"></i>
+                                <span class="hide-menu">Perguruan Tinggi</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item @if (Request::is('cpanel/users*')) selected @endif"> 
                             <a class="sidebar-link sidebar-link" href="{{ route('users') }}" aria-expanded="false">
                                 <i data-feather="users" class="feather-icon"></i>
@@ -22,15 +29,8 @@
                             </a>
                         </li>
 
-                        <!-- <li class="sidebar-item @if (Request::is('cpanel/users*')) selected @endif"> 
-                            <a class="sidebar-link sidebar-link" href="{{ route('users') }}" aria-expanded="false">
-                                <i data-feather="slack" class="feather-icon"></i>
-                                <span class="hide-menu">Perguruan Tinggi</span>
-                            </a>
-                        </li> -->
-
                         <li class="sidebar-item @if (Request::is('cpanel/activities*')) selected @endif"> 
-                            <a class="sidebar-link sidebar-link" href="{{ route('users') }}" aria-expanded="false">
+                            <a class="sidebar-link sidebar-link" href="{{ route('activities') }}" aria-expanded="false">
                                 <i data-feather="briefcase" class="feather-icon"></i>
                                 <span class="hide-menu">Kegiatan</span>
                             </a>
@@ -46,7 +46,12 @@
                         @endhasrole
 
                         @role('user')
-
+                        <li class="sidebar-item @if (Request::is('cpanel/activities*')) selected @endif"> 
+                            <a class="sidebar-link sidebar-link" href="{{ route('users') }}" aria-expanded="false">
+                                <i data-feather="briefcase" class="feather-icon"></i>
+                                <span class="hide-menu">Kegiatan</span>
+                            </a>
+                        </li>
                         @endrole
                         
                     </ul>
