@@ -67,10 +67,21 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'cpanel'], function() {
 	});
 
 	Route::group(['middleware' => ['role:user']], function() {
+		// majors
+		Route::get('majors', [InstitutionController::class, 'majors'])->name('institution.majors');
+		Route::get('create-major', [InstitutionController::class, 'createMajor'])->name('create.institution.major');
+		Route::post('majors', [InstitutionController::class, 'storeMajor'])->name('store.institution.major');
+		Route::get('edit-major/{id?}', [InstitutionController::class, 'editMajor'])->name('edit.institution.major');
+		Route::put('majors/{id?}', [InstitutionController::class, 'updateMajor'])->name('update.institution.major');
+
+		// activities
+		Route::get('activity-operator', [ActivityController::class, 'activityOperator'])->name('activity.operator');
+
 		// survey
-		Route::get('event-surveys', [SurveyController::class, 'listEventSurvey'])->name('event.surveys');
-		Route::get('event-surveys/{id?}', [SurveyController::class, 'fillEventSurvey'])->name('fill.event.survey');
-		Route::post('event-surveys', [SurveyController::class, 'storeEventSurvey'])->name('store.event.survey');
+		Route::get('activity-survey/{id?}', [SurveyController::class, 'fillActivitySurvey'])->name('fill.activity.survey');
+		Route::post('activity-operator', [SurveyController::class, 'storeActivitySurvey'])->name('store.activity.survey');
+		Route::get('activity-operator/{id?}', [SurveyController::class, 'showActivitySurvey'])->name('show.activity.operator');
+
 	});
 });
 

@@ -205,4 +205,136 @@ class InstitutionController extends Controller
 
         return redirect()->back();
     }
+
+    public function majors(Request $request)
+    {
+        $userId = auth()->user()->id;
+        $institutionId = @auth()->user()->institution()->first()->id;
+        $data = Major::where('institution_id', $institutionId)->get();
+
+        if ($request->ajax()) {
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('status', function($data) {
+                    if ($data->is_active) {
+                        $stat = 'Aktif';
+                    } else {
+                        $stat = 'Tidak aktif';
+                    }
+
+                    return $stat;
+                })
+                ->addColumn('action', function ($data){
+                    return '
+                        <a href="#" value="'.e(route('edit.institution.major', $data->id)).'" class="btn btn-warning btn-sm modalEdit" title="Edit Progoram Studi" data-toggle="modal" data-target="#modalEdit"><span class="fas fa-pencil-alt"></span></a>
+                    ';
+                    
+                        // <a href="#" value="'.e(route('show.institution', $data->id)).'" class="btn btn-primary btn-sm modalMd" title="Detail User" data-toggle="modal" data-target="#modalMd"><span class="fas fa-search"></span></a>
+                })
+                ->toJson();
+        }
+
+        return view('cpanel.contents.institutions.major', get_defined_vars());
+    }
+
+    public function createMajor()
+    {
+        return view('cpanel.contents.institutions.add_major', get_defined_vars())->renderSections()['content'];
+    }
+
+    public function storeMajor(Request $request)
+    {
+        $data = $request->all();
+        $institutionId = @auth()->user()->institution()->first()->id;
+
+        $validator = Validator::make($data, [
+            // 'code' => ['required', 'string', 'max:255'],
+            // 'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        if ($validator->fails()) {
+            Alert::error('Error', $validator->errors()->first());
+            return redirect()->back();
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $major_names = $request->major_names;
+            $major_codes = $request->major_codes;
+            $is_active = $request->is_active;
+
+            for ($i=0; $i < count((array) $major_codes); $i++) { 
+                if ($is_active[$i] == 'on') {
+                    $status = 1;
+                } else {
+                    $status = 0;
+                }
+
+                $major = new Major;
+                $major->institution_id = $institutionId;
+                $major->code = $major_codes[$i];
+                $major->name = $major_names[$i];
+                $major->is_active = $status;
+                $major->save();
+            }
+
+            DB::commit();
+            Alert::success('Success', 'Major added successfully');
+        } catch (Exception $ex) {
+            DB::rollBack();
+
+            Alert::error('Error', $ex->getMessage());
+        }
+
+        return redirect()->back();
+    }
+
+    public function editMajor($id)
+    {
+        $data = Major::find($id);
+
+        return view('cpanel.contents.institutions.edit_major', get_defined_vars())->renderSections()['content'];
+    }
+
+    public function updateMajor(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'code' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],            
+        ]);
+
+        if ($validator->fails()) {
+            Alert::error('Error', $validator->errors()->first());
+            return redirect()->back();
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $data = Major::find($id);
+            if ($request->is_active == 'on') {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
+
+            $data->update([
+                'code' => $request->code,
+                'name' => $request->name,
+                'is_active' => $status,
+            ]);
+
+            DB::commit();
+            Alert::success('Success', 'Major updated successfully');
+        } catch (Exception $ex) {
+            DB::rollBack();
+
+            Alert::error('Error', $ex->getMessage());
+        }
+
+        return redirect()->back();
+    }
 }

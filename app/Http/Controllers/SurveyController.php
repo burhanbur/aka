@@ -394,72 +394,109 @@ class SurveyController extends Controller
         return redirect()->back();
     }
 
-    public function listEventSurvey(Request $request)
+    // public function listActivitySurvey(Request $request)
+    // {
+    //     $userId = Auth::user()->id;
+    //     $data = $this->surveyService->getAllMySurvey($userId);
+    //     $today = date('Y-m-d');
+
+    //     $data = DB::select('
+    //         SELECT DISTINCT s.*, e.title as activity FROM surveys as s 
+    //         JOIN activities as e ON e.id = s.activity_id 
+    //         WHERE s.is_active = TRUE 
+    //         AND s.due_date >= ? 
+    //         AND NOT EXISTS (SELECT * FROM respondens WHERE survey_id = s.id AND user_id = ?)
+    //     ', array($today, $userId));
+
+    //     if ($request->ajax()) {
+    //         return Datatables::of($data)
+    //             ->addIndexColumn()
+    //             ->addColumn('due_date', function($data) {
+    //                 return @tanggal($data->due_date);
+    //             })
+    //             ->addColumn('action', function ($data){
+    //                 return '
+    //                     <a href="'.e(route('fill.event.survey', $data->id)).'" class="btn btn-primary btn-sm" title="Fill  Survey"><span class="fas fa-pencil-alt"></span></a>
+    //                 ';
+    //             })
+    //             ->toJson();
+    //     }
+
+    //     return view('cpanel.contents.surveys.my_survey', get_defined_vars());
+    // }
+
+    public function fillActivitySurvey($id)
     {
-        $userId = Auth::user()->id;
-        $data = $this->surveyService->getAllMySurvey($userId);
-        $today = date('Y-m-d');
+        $data = Survey::where('activity_id', $id)->first();
 
-        $data = DB::select('
-            SELECT DISTINCT s.*, e.title as event FROM surveys as s 
-            JOIN activities as e ON e.id = s.activity_id 
-            WHERE s.is_active = TRUE 
-            AND s.due_date >= ? 
-            AND NOT EXISTS (SELECT * FROM respondens WHERE survey_id = s.id AND user_id = ?)
-        ', array($today, $userId));
-
-        if ($request->ajax()) {
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('due_date', function($data) {
-                    return @tanggal($data->due_date);
-                })
-                ->addColumn('action', function ($data){
-                    return '
-                        <a href="'.e(route('fill.event.survey', $data->id)).'" class="btn btn-primary btn-sm" title="Fill  Survey"><span class="fas fa-pencil-alt"></span></a>
-                    ';
-                })
-                ->toJson();
-        }
-
-        return view('cpanel.contents.surveys.my_survey', get_defined_vars());
-    }
-
-    public function fillEventSurvey($id)
-    {
-        $check = $this->surveyService->isMemberEvent($id, Auth::user()->id);
-
-        if (!$check) {
-            Alert::error('Error', 'Anda tidak dapat mengisi kuesioner ini');
+        if (!$data) {
+            Alert::error('Error', 'Survey pada kegiatan ini belum dibuat');
 
             return redirect()->back();
         }
 
-        $data = $this->surveyService->getById($id);
-
         return view('cpanel.contents.surveys.fill_survey', get_defined_vars());
     }
 
-    public function storeEventSurvey(Request $request)
+    public function storeActivitySurvey(Request $data)
     {
-        $data = $request->all();
+        // $data = $request->all();
 
-        $validator = Validator::make($data, [
+        $validator = Validator::make($data->all(), [
             'survey_id' => ['required'],
         ]);
 
         if ($validator->fails()) {
             Alert::error('Error', $validator->errors()->first());
-        } else {
-            $err = $this->surveyService->fillSurvey($request, Auth::user()->id);
 
-            if ($err) {
-                Alert::error('Error', $err);
-            } else {
-                Alert::success('Success', 'Fill survey data successfully');
-            }
+            return redirect()->back();
         }
 
-        return redirect()->route('event.surveys');
+        DB::beginTransaction();
+
+        try {
+            $responden = new Responden;
+            $responden->survey_id = $data->survey_id;
+            $responden->user_id = Auth::user()->id;
+            $responden->save();
+
+            $params = [];
+            $questions = @$data->question_id;
+            $answers = @$data->answers;
+
+            foreach ($answers as $key => $value) {
+                foreach ($value as $val) {
+                    $params[] = [
+                        'responden_id' => $responden->id,
+                        'question_id' => $questions[$key],
+                        'answer' => $val
+                    ];
+                }
+            }
+
+            Answer::insert($params);
+
+            DB::commit();
+            Alert::success('Success', 'Berhasil mengisi survey');
+        } catch (Exception $ex) {
+            DB::rollBack();
+
+            Alert::error('Error', $ex->getMessage());
+        }
+
+        return redirect()->route('activity.operator');
+    }
+
+    public function showActivitySurvey($id)
+    {
+        $data = Survey::where('activity_id', $id)->first();
+
+        if (!$data) {
+            Alert::error('Error', 'Survey pada kegiatan ini belum dibuat');
+
+            return redirect()->back();
+        }
+
+        return view('cpanel.contents.surveys.my_survey', get_defined_vars());
     }
 }

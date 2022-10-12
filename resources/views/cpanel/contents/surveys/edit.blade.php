@@ -221,7 +221,7 @@
 		}
 	});
 
-	$("#show_option{{ $keyJs }}").on("click", ".ibtnDel", function (activity) {
+	$("#show_option{{ $keyJs }}").on("click", ".ibtnDel", function (event) {
 		$(this).closest("test").remove();
 	});
 </script>
@@ -232,7 +232,7 @@
     var counter = <?= $totalQuestion; ?>;
 
 	$("#addquestion").on("click", function (e) {
-		e.practivityDefault();
+		e.preventDefault();
 		var newRow = $("<p>");
 		var cols = "";
 
@@ -267,8 +267,8 @@
 		counter++;
 	});
 
-	$("#questions").on("click", ".delData", function (activity) {
-		activity.practivityDefault();
+	$("#questions").on("click", ".delData", function (event) {
+		event.preventDefault();
 		$(this).closest("p").remove();
 		$(this).closest("test").remove();
 	});

@@ -142,4 +142,31 @@ class ActivityController extends Controller
 
         return redirect()->back();
     }
+
+    public function activityOperator(Request $request)
+    {
+        $data = Activity::all();
+
+        if ($request->ajax()) {
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('type', function($data) {
+                    return @$data->activityType->name;
+                })
+                ->addColumn('countSurvey', function($data) {
+                    $count = Survey::where(array('activity_id' => $data->id, 'is_active' => true))->count();
+
+                    return $count;
+                })
+                ->addColumn('action', function ($data){
+                    return '
+                        <a href="'.e(route('show.activity.operator', $data->id)).'" class="btn btn-primary btn-sm" title="Lihat Survey"><span class="fas fa-search"></span></a>
+                        <a href="'.e(route('fill.activity.survey', $data->id)).'" class="btn btn-warning btn-sm" title="Isi Survey"><span class="fas fa-pencil-alt"></span></a>
+                    ';
+                })
+                ->toJson();
+        }
+
+        return view('cpanel.contents.activities.operator', get_defined_vars());
+    }
 }
