@@ -26,6 +26,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'cpanel'], function() {
+	Route::get('/', function () {
+	    return redirect()->route('home');
+	});
+
 	Route::get('home', [HomeController::class, 'index'])->name('home');
 
 	Route::get('profile', [UserController::class, 'profile'])->name('profile');
