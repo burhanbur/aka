@@ -12,6 +12,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 use App\Models\Activity;
 use App\Models\Answer;
+use App\Models\Institution;
 use App\Models\Survey;
 use App\Models\Responden;
 use App\Models\Question;
@@ -70,9 +71,11 @@ class SurveyController extends Controller
         return view('cpanel.contents.surveys.index', get_defined_vars());
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $userId = auth()->user()->id;
         $data = Survey::find($id);
+        $dropdownInstitution = Institution::all();
 
         return view('cpanel.contents.surveys.show', get_defined_vars());
     }
